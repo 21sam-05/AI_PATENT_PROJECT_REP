@@ -18,9 +18,9 @@ A Retrieval-Augmented Generation (RAG) system that allows users to upload patent
 
 ## 🏗️ Architecture
 
-Python
-LangChain
-FAISS (Vector Database)
+- Python
+- LangChain
+- FAISS (Vector Database)
 Google Gemini API
 Frontend
 HTML
