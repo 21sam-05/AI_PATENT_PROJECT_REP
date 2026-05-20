@@ -16,25 +16,32 @@ A Retrieval-Augmented Generation (RAG) system that allows users to upload patent
 
 ---
 
-## 🏗️ Architecture
+## 🛠️ Tech Stack
 
+### Backend
+- FastAPI
 - Python
 - LangChain
-- FAISS (Vector Database)
-Google Gemini API
-Frontend
-HTML
-CSS
-JavaScript
+- FAISS
+- Google Gemini API
 
-# ⚙️ How It Works
-User uploads a patent PDF
-PDF is converted into text using LangChain
-Text is split into chunks
-Each chunk is converted into embeddings
-Embeddings are stored in FAISS vector database
-User enters a query
-System retrieves most similar patent chunks
-Gemini AI generates analysis of overlap and innovation similarity
-Results are displayed in frontend UI
+### Frontend
+- HTML
+- CSS
+- JavaScript
 
+---
+
+## ⚙️ How It Works
+
+1. Upload a patent PDF
+2. Extract text using LangChain
+3. Split into chunks
+4. Convert chunks into embeddings
+5. Store embeddings in FAISS
+6. User enters a query
+7. Retrieve similar patent chunks
+8. Gemini generates analysis
+9. Results shown in frontend
+
+---
