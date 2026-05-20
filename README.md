@@ -1,11 +1,12 @@
-📌 AI Patent Intelligence System (RAG-based Search Engine)
+## 📌 AI Patent Intelligence System (RAG-based Search Engine)
+
 🚀 Overview
 
-The AI Patent Intelligence System is a Retrieval-Augmented Generation (RAG) based application that allows users to upload patent PDFs and search for similar innovations using semantic search and AI-powered analysis.
+# The AI Patent Intelligence System is a Retrieval-Augmented Generation (RAG) based application that allows users to upload patent PDFs and search for similar innovations using semantic search and AI-powered analysis.
 
-It helps identify prior-art overlap, similar inventions, and technical relationships between patents using vector embeddings and LLM-based reasoning.
+# It helps identify prior-art overlap, similar inventions, and technical relationships between patents using vector embeddings and LLM-based reasoning.
 
-🧠 Key Features
+# 🧠 Key Features
 📄 Upload patent PDFs for processing
 🔍 Semantic search across patent documents
 🤖 AI-generated analysis of innovation overlap
@@ -14,28 +15,11 @@ It helps identify prior-art overlap, similar inventions, and technical relations
 ⚡ FastAPI backend for high-performance API handling
 🌐 Simple HTML/CSS/JS frontend interface
 
-🏗️ System Architecture
-
-User (Frontend)
-     ↓
-FastAPI Backend
-     ↓
-PDF Loader (LangChain)
-     ↓
-Text Chunking
-     ↓
-Embedding Model
-     ↓
-FAISS Vector Database
-     ↓
-Similarity Search
-     ↓
-  Gemini LLM
-    ↓
-Results to frontend
 
 
-🛠️ Tech Stack
+
+# 🛠️ Tech Stack
+
 Backend
 FastAPI
 Python
@@ -47,7 +31,7 @@ HTML
 CSS
 JavaScript
 
-⚙️ How It Works
+# ⚙️ How It Works
 User uploads a patent PDF
 PDF is converted into text using LangChain
 Text is split into chunks
