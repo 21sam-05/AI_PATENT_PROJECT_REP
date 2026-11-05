@@ -1,6 +1,7 @@
 from fastapi import FastAPI, UploadFile, File
 import shutil
 import os
+from pathlib import Path
 
 from utils.pdf_loader import load_pdf
 from utils.chunker import split_documents
@@ -10,22 +11,28 @@ from utils.patent_search import search_similar_patents
 from utils.llm import get_llm
 from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
+BASE_DIR=Path(__file__).resolve().parent
+DATA_DIR=BASE_DIR/"data"
+DATA_DIR.mkdir(parents=True,exist_ok=True)
+
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # allows all frontend URLs
+    allow_origins=[
+        "http://localhost:5500",
+        "http://127.0.0.1:5500",
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Ensure folders exist
 os.makedirs("data", exist_ok=True)
 
 
-# ---------------------------
-# HOME ROUTE
-# ---------------------------
+
 @app.get("/")
 def home():
     return {
@@ -33,14 +40,13 @@ def home():
     }
 
 
-# ---------------------------
+
 # UPLOAD PATENT PDF
-# ---------------------------
+
 @app.post("/upload")
 async def upload_pdf(file: UploadFile = File(...)):
 
-    file_path = f"data/{file.filename}"
-
+    file_path = DATA_DIR / file.filename
     # Save file locally
     with open(file_path, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
@@ -64,9 +70,7 @@ async def upload_pdf(file: UploadFile = File(...)):
     }
 
 
-# ---------------------------
-# SIMILAR PATENT SEARCH
-# ---------------------------
+
 @app.get("/similar_patents")
 def similar_patents(query: str, k: int = 3):
 
@@ -77,9 +81,7 @@ def similar_patents(query: str, k: int = 3):
 
     combined_context = ""
 
-    # --------------------------------------------
-    # HANDLE RESULTS SAFELY
-    # --------------------------------------------
+    
     for result in results:
 
         # unpack safely
@@ -125,9 +127,7 @@ PATENT CONTENT:
 
 """
 
-    # --------------------------------------------
-    # GEMINI ANALYSIS
-    # --------------------------------------------
+    
     llm = get_llm()
 
     prompt = f"""
@@ -153,9 +153,7 @@ Return concise analysis.
 
     response = llm.generate_content(prompt)
 
-    # --------------------------------------------
-    # FINAL RESPONSE
-    # --------------------------------------------
+    
     return {
 
         "query": query,

@@ -1,0 +1,41 @@
+
+# Python virtual environment
+.venv/
+venv/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Testing and coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# IDE settings
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+
+# FAISS vector databases and backups
+backend/vectordb/
+backend/vectordb_backup/
+backend/vectordb_old_l2/
+
+# Local patent and test PDFs
+backend/data/*.pdf
