@@ -265,4 +265,98 @@ Open:
 
 http://127.0.0.1:8000/docs
 
-Use the available endpoints to interact
+Use the available endpoints to interact with the application and test document uploads.
+
+---
+
+## Retrieval Evaluation
+
+The project includes a retrieval evaluation module:
+
+```text
+backend/evaluation/retrieval_eval.py
+```
+
+It evaluates semantic retrieval using manually labelled queries and relevant patent pages.
+
+Run the evaluation from the backend directory:
+
+```cmd
+python -m evaluation.retrieval_eval
+```
+
+### Evaluation Metrics
+
+**Precision@K**
+
+Measures the proportion of retrieved results within the top K that are relevant.
+
+**Recall@K**
+
+Measures the proportion of known relevant results successfully retrieved within the top K.
+
+These metrics help assess retrieval quality and identify queries where relevant patent information is not ranked highly enough.
+
+The current evaluation dataset is an initial manually labelled benchmark. Results should be interpreted in the context of its limited size and relevance annotations.
+
+---
+
+## Engineering Highlights
+
+Some of the important engineering decisions in this project include:
+
+- **Hybrid PDF extraction:** Combining native PDF text extraction with OCR fallback to support both digital and scanned patent documents.
+- **Page-level metadata preservation:** Retaining patent names, page numbers, extraction methods, and OCR confidence throughout the retrieval pipeline.
+- **Normalized embeddings:** Using normalized vector embeddings with FAISS inner-product search for cosine-similarity-style retrieval.
+- **Persistent vector indexing:** Saving and loading the FAISS index to support retrieval across application sessions.
+- **Retrieval evaluation:** Using Precision@K and Recall@K to evaluate semantic search instead of relying only on subjective query results.
+- **Modular backend architecture:** Separating PDF processing, chunking, embedding generation, retrieval, LLM integration, and evaluation into individual modules.
+
+---
+
+## Current Limitations
+
+- Retrieval quality depends on document extraction quality, chunking, and embedding relevance.
+- OCR may introduce recognition errors, especially in complex patent diagrams and technical drawings.
+- FAISS currently uses local filesystem persistence and requires an appropriate persistent storage strategy for cloud deployment.
+- Gemini-powered analysis depends on external API availability and configured credentials.
+- Retrieval evaluation currently uses a small manually labelled dataset.
+- Semantic similarity is not equivalent to legal prior-art analysis or patent infringement assessment.
+
+---
+
+## Future Improvements
+
+Planned engineering enhancements include:
+
+- Docker-based application containerization.
+- Docker Compose for local deployment.
+- Automated testing with pytest.
+- GitHub Actions for Continuous Integration.
+- Automated Docker image builds.
+- Cloud deployment with persistent storage.
+- Continuous Deployment (CD).
+- Production logging and health monitoring.
+- Improved retrieval evaluation and ranking.
+- Enhanced document-level patent comparison.
+
+---
+
+## Author
+
+**Samridhi Saxena**
+
+B.Tech Computer Science and Engineering — Artificial Intelligence and Machine Learning
+
+VIT Bhopal University
+
+- GitHub: https://github.com/21sam-05
+- LinkedIn: https://www.linkedin.com/in/samridhi-saxena-07231a28a/
+
+---
+
+## Disclaimer
+
+This project is intended for educational, technical research, and patent information exploration purposes.
+
+Its outputs are AI-generated and should not be treated as legal advice or as definitive conclusions regarding patent novelty, infringement, validity, or ownership.
